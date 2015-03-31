@@ -11,7 +11,7 @@ export default function select(lists, track, done) {
   }
 
   var options = hashToRenderable(lists);
-  var item = listitem(add, 'Add to Playlist');
+  var item = listitem({ 'Add to Playlist': add });
   var el = tracklist(options, item);
   return el;
 }

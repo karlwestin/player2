@@ -14,6 +14,12 @@ var listEl = document.querySelector("#tracklist");
 var sidebarEl = document.querySelector("#sidebar");
 var searchEl = document.querySelector("#search")
 
+function queue(track) {
+  playlists.queue.unshift(track);
+  // TODO: Step the player forward
+}
+
+
 function search() {
   var selector;
   function add(track) {
@@ -26,7 +32,7 @@ function search() {
     document.body.appendChild(selector);
   };
 
-  var searchresitem = listitem(add, 'Select List');
+  var searchresitem = listitem({ 'Select List': add, 'Play Now': queue });
   var render = renderList.bind(null, listEl, searchresitem);
 
   var box = searchbox(function(searchval) {
@@ -48,8 +54,14 @@ function playlist(name) {
     render();
   }
 
-  var q = listitem(remove, 'Remove from ' + name);
-  var render = renderList.bind(null, listEl, q, list);
+  var label = `Remove from ${name}`;
+  var buttons = {
+    'Play Now': queue
+  };
+  buttons[label] = remove;
+
+  var trackitem = listitem(buttons);
+  var render = renderList.bind(null, listEl, trackitem, list);
   render();
 }
 
@@ -58,8 +70,6 @@ function sidebar() {
     playlist(item.title);
   }
 
-  var mi = listitem(show, "Show Playlist");
-
   var addBox = searchbox(function(name) {
     if(!playlists[name]) {
       playlists[name] = [];
@@ -67,6 +77,7 @@ function sidebar() {
     }
   });
 
+  var mi = listitem({ "Show Playlist": show });
   var items = hashToRenderable.bind(null, playlists);
   var list = renderList.bind(null, sidebarEl, mi);
   var append = sidebarEl.appendChild.bind(sidebarEl, addBox);
@@ -78,7 +89,6 @@ function sidebar() {
 // behövs egentligen bara
 // Sidebar -
 //  Ta bort playlist
-//    - Searchresultitem ska få veta att en playlist försvann
 //    - Om den playlisten visas, ta bort och visa queue istället
 //  Listitem
 //    - "Play Now" button - lägger först i queue och stegar fram
