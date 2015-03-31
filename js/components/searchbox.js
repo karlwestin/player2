@@ -8,7 +8,7 @@
   takes a parent (dom element) and a search function,
   which is called when the user hits 'enter'
 */
-export default function box(parent, searchfunc) {
+export default function box(searchfunc) {
   var input = document.createElement("input");
   input.type="text";
   input.addEventListener("keydown", function(e) {
@@ -17,5 +17,5 @@ export default function box(parent, searchfunc) {
       searchfunc(input.value);
     }
   }, false);
-  parent.appendChild(input);
+  return input;
 }

@@ -1,5 +1,3 @@
-import { clear } from 'lib/dom';
-
 export default function tracklist(items, listitem) {
   var ul = document.createElement("ul");
 

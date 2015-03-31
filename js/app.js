@@ -1,52 +1,56 @@
 import listitem from 'components/listitem'
-import tracklist from 'components/tracklist'
 import searchbox from 'components/searchbox'
+import select from 'components/select'
 import searchtracks from 'services/searchtracks'
-import { clear } from 'lib/dom';
+import { remove, renderList } from 'lib/dom';
+import { comp, hashToRenderable } from 'lib/functional';
 
 var playlists = {
   queue: []
 };
 
-function renderList(element, item, list) {
-  var el = tracklist(list, item);
-  clear(element);
-  element.appendChild(el);
-}
 
 var listEl = document.querySelector("#tracklist");
 var sidebarEl = document.querySelector("#sidebar");
+var searchEl = document.querySelector("#search")
 
 function search() {
-  function add(item) {
-    playlists.queue.push(item);
-    console.log('playlist is', playlists.queue);
+  var selector;
+  function add(track) {
+    remove(selector);
+
+    selector = select(playlists, track, function() {
+      remove(selector);
+    });
+
+    document.body.appendChild(selector);
   };
 
-  var searchresitem = listitem(addToQueue, 'Add to Queue');
+  var searchresitem = listitem(add, 'Select List');
   var render = renderList.bind(null, listEl, searchresitem);
 
-  var box = searchbox(document.querySelector("#search"), function(searchval) {
+  var box = searchbox(function(searchval) {
     searchtracks(searchval, render);
   });
+  searchEl.appendChild(box);
 
   render([]);
 };
 
 function playlist(name) {
+  var list = playlists[name];
+
   function remove(item) {
     var index = list.indexOf(item);
     if(index > -1) {
       list.splice(index, 1);
     }
-    render(list);
+    render();
   }
 
   var q = listitem(remove, 'Remove from ' + name);
-  var render = renderList.bind(null, listEl, q);
-
-  var list = playlists[name];
-  render(list);
+  var render = renderList.bind(null, listEl, q, list);
+  render();
 }
 
 function sidebar() {
@@ -55,18 +59,24 @@ function sidebar() {
   }
 
   var mi = listitem(show, "Show Playlist");
-  var render = renderList.bind(null, sidebarEl, mi);
 
-  var items = Object.keys(playlists).map(function(el) {
-    return { title: el };
+  var addBox = searchbox(function(name) {
+    if(!playlists[name]) {
+      playlists[name] = [];
+      render();
+    }
   });
-  render(items);
+
+  var items = hashToRenderable.bind(null, playlists);
+  var list = renderList.bind(null, sidebarEl, mi);
+  var append = sidebarEl.appendChild.bind(sidebarEl, addBox);
+  var render = comp(append, list, items);
+
+  render();
 }
 
 // behövs egentligen bara
 // Sidebar -
-//  Lägg till en playlist
-//    - searchresultitem ska få veta att det finns en ny playlist
 //  Ta bort playlist
 //    - Searchresultitem ska få veta att en playlist försvann
 //    - Om den playlisten visas, ta bort och visa queue istället
