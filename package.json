@@ -1,0 +1,19 @@
+{
+  "name": "Player2",
+  "version": "1.0.0",
+  "description": "A little player",
+  "main": "js/app.js",
+  "dependencies": {
+    "babel": "^4.7.16",
+    "requirejs": "^2.1.16"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "babel js --out-dir src --modules amd --watch",
+    "build": "babel js --out-dir src --modules amd",
+    "serve": "python -m SimpleHTTPServer 8888"
+  },
+  "author": "karl",
+  "license": "ISC"
+}

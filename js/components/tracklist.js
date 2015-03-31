@@ -1,26 +1,13 @@
+import { clear } from 'lib/dom';
 
-
-
-
-
-
-
-export function tracklist(parent, listitem) {
+export default function tracklist(items, listitem) {
   var ul = document.createElement("ul");
-  parent.appendChild(ul);
 
-  return function render(items) {
-    items = items || [];
-    // Re-render the list, with the
-    // required items
-    while(ul.firstChild) {
-      ul.removeChild(ul.firstChild);
-    }
+  items = items || [];
+  items.forEach(function(item) {
+    var el = listitem(item);
+    ul.appendChild(el);
+  });
 
-    items.forEach(function(item) {
-      var el = listitem(item);
-      ul.appendChild(el);
-    }):
-
-  }
+  return ul;
 }

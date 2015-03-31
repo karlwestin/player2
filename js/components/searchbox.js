@@ -10,11 +10,12 @@
 */
 export default function box(parent, searchfunc) {
   var input = document.createElement("input");
+  input.type="text";
   input.addEventListener("keydown", function(e) {
     if(e.keyCode === 13) {
-      searchfunc(e.value);
+      e.preventDefault();
+      searchfunc(input.value);
     }
-    e.preventDefault();
   }, false);
   parent.appendChild(input);
 }
