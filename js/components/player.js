@@ -3,8 +3,10 @@ import { show, hide } from 'lib/dom';
 import { keys, flatten, hashMap } from 'lib/functional';
 import { addId } from 'services/searchtracks';
 
+var emptyTrack =  "/img/empty.png";
 export default function player(track, next) {
   var hasTrack = !!track;
+
   var audio = document.createElement("audio");
   audio.addEventListener("ended", next, false)
 
@@ -18,12 +20,17 @@ export default function player(track, next) {
   var cover = document.createElement("img");
 
   if(hasTrack) {
-    audio.src = addId(track.stream_url);
+    if(track.stream_url) {
+      audio.src = addId(track.stream_url);
+    } else {
+      alert('This track doesn\'t have a stream url');
+    }
+
     label.innerText = track.title;
-    cover.src = track.artwork_url;
+    cover.src = track.artwork_url || emptyTrack;
   } else {
     label.innerText = "No Track";
-    cover.src = "/img/empty.png";
+    cover.src = emptyTrack;
   }
 
   el.appendChild(label);
