@@ -12,9 +12,23 @@ export function clear(element) {
   }
 }
 
+export function clearAdd(element, toAdd) {
+  clear(element);
+  element.appendChild(toAdd);
+}
+
 export function renderList(element, item, list) {
   var el = tracklist(list, item);
   clear(element);
   element.appendChild(el);
+  return el;
+}
+
+export function show(element) {
+  element.style.display = '';
+}
+
+export function hide(element) {
+  element.style.display = 'none';
 }
 
