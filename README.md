@@ -17,6 +17,24 @@ npm run serve
 
 # which starts a little server on localhost:8888
 ```
+### Reading the Source
+
+start in [app.js](https://github.com/karlwestin/player2/blob/master/js/app.js), then you can start reading smaller components, like the [search box](https://github.com/karlwestin/player2/blob/master/js/components/searchbox.js). The application state is stored on the `window.playlists` hash, defined in app.js.
+
+Some components:
+components/textinput
+- creates a text input that calls a function with its value on enter
+
+components/player
+- takes a track from the queue, creates an audio element and shows the album art
+
+components/search
+- uses a text box, calls the searchtracks service, re-renders itself when searchtracks returns
+
+components/listitem
+- takes a map of actions, generates a function that creates list items. This is used to create several different items: **search results** with 'add to playlist' and 'play now', **play lists in the sidebar** with show, delete and queue buttons, and tracks in playlists with a 'play' and 'remove' buttons.
+
+At the bottom of the screen, there's **toggle component names** button, that shows labels indicating where each thing on the screen comes from.
 
 ### License
 

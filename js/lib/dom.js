@@ -17,8 +17,8 @@ export function clearAdd(element, toAdd) {
   element.appendChild(toAdd);
 }
 
-export function renderList(element, item, list) {
-  var el = tracklist(list, item);
+export function renderList(element, item, list, showEmpty) {
+  var el = tracklist(list, item, showEmpty);
   clear(element);
   element.appendChild(el);
   return el;

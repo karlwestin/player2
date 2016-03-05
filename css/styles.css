@@ -1,0 +1,164 @@
+html {
+  background: linear-gradient(to bottom, #FFEC3C 0%, #FFEC3C 20%, #D613E8 75%,#0D6DFF 100%);
+  min-height: 100%;
+  margin: 0;
+}
+
+body {
+  font-family: 'Helvetica', Arial;
+}
+
+.button-wrapper {
+  display: inline-block;
+}
+
+#sidebar {
+  padding: 20px;
+  width: 35%;
+}
+
+.whitebox {
+  background-color: rgba(255, 255, 255, 0.2);
+  padding: 20px;
+  margin: 5px;
+}
+
+input[type=text] {
+  padding: 10px;
+  color: #D613E8;
+  font-weight: bold;
+  border: none;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+ul {
+  padding: 0px;
+}
+
+.purple {
+  background-color: #890CE8;
+}
+
+.yellow {
+  background-color: #FFEC3C;
+}
+
+.red {
+  background-color: #FF0000;
+}
+
+.pink {
+  background-color: #D613E8;
+}
+
+.blue {
+  background-color: #0D6DFF;
+}
+
+button:hover {
+  background-color: #890CE8;
+}
+
+.sidebar li {
+  background-color: #FFEC3C;
+  color: #890CE8;
+}
+
+.sidebarbox {
+  padding: 12px;
+  background-color: #FFEC3C;
+  color: #890CE8;
+}
+
+li {
+  list-style-type: none;
+  padding: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+}
+
+.skew {
+  transform: skewX(-10deg) skewY(-5deg);
+}
+
+.sidebar span {
+  display: inline-block;
+  transform: skewX(-10deg) skewY(-5deg);
+}
+
+
+h1 {
+  color: rgba(255, 255, 255, 0.6);
+  text-align: center;
+  z-index: -1;
+  position: absolute;
+  text-transform: uppercase;
+  font-size: 250px;
+  margin-top: 100px;
+}
+
+h3 {
+  color: #0D6DFF;
+}
+
+.searchresults li {
+  background-color: #0D6DFF;
+  color: #fff;
+}
+
+.playlist li {
+  background-color: #D613E8;
+  color: #fff;
+}
+
+button {
+  border-radius: 5px;
+  padding: 7px;
+  border: 3px #fff solid;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-family: Helvetica, Arial;
+  color: #fff;
+  margin-left: 10px;
+}
+
+.label {
+  padding-left: 20px;
+  flex: 2;
+}
+
+.player {
+  align-items: flex-end;
+}
+
+.listitem {
+  align-items: center;
+}
+
+.listitemlabel {
+  flex: 2;
+}
+
+/* Layout */
+.horizontal-flex {
+  display: flex;
+  flex-direction: row;
+}
+
+.vertical-flex {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Tooltip */
+.explanation {
+  position: absolute;
+  color: #333;
+  background-color: #fff;
+  font-family: Monaco, 'Lucida Console';
+  z-index: 10000;
+  text-transform: none;
+  display: none;
+}

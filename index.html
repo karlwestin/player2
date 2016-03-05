@@ -3,18 +3,25 @@
 <head>
   <meta charset="utf-8">
   <title>Player 2</title>
+  <link rel="stylesheet" href="/css/styles.css"/>
 </head>
 <body>
 
-<div id="app">
+<h1 class="skew">Player 2</h1>
+<div id="app" class="horizontal-flex">
   <div id="sidebar"></div>
-  <div id="search"></div>
-  <div id="tracklist"></div>
-  <div id="player"></div>
+  <div style="width: 70%" class="vertical-flex">
+    <div id="search"></div>
+    <div id="tracklist"></div>
+    <div id="player"></div>
+  </div>
 </div>
+
+<button class="js_show_component_names">Toggle Component Names</button>
 
 
 <script src="node_modules/babel/browser-polyfill.js"></script>
 <script src="node_modules/requirejs/require.js" data-main="src/app"></script>
+<script>require(['toggle'])</script>
 </body>
 </html>

@@ -1,12 +1,16 @@
-import listitem from 'components/listitem'
-import { searchtracks } from 'services/searchtracks'
-import searchbox from 'components/searchbox'
-import { remove, renderList } from 'lib/dom';
-import select from 'components/select'
+import listitem from "components/listitem"
+import explanation from "components/explanation"
+import { searchtracks } from "services/searchtracks"
+import textinput from "components/textinput"
+import { remove, renderList } from "lib/dom";
+import select from "components/select"
 
 export default function search(playlists, playNow) {
   var main = document.createElement("div");
   var listEl = document.createElement("div");
+  listEl.className = "searchresults";
+  main.appendChild(explanation("search"));
+  main.className = "whitebox";
 
   var selector;
   function add(track) {
@@ -19,12 +23,13 @@ export default function search(playlists, playNow) {
     main.appendChild(selector);
   };
 
-  var searchresitem = listitem({ 'Select List': add, 'Play Now': playNow });
+  var searchresitem = listitem({ "Add to List": add, "Play Now": playNow });
   var render = renderList.bind(null, listEl, searchresitem);
 
-  var box = searchbox(function(searchval) {
+  var box = textinput(function(searchval) {
     searchtracks(searchval, render);
   });
+  box.querySelector("input").placeholder = "Search: Type + Enter"
 
   main.appendChild(box);
   main.appendChild(listEl);

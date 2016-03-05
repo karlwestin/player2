@@ -1,4 +1,5 @@
 import button from 'components/button';
+import explanation from 'components/explanation';
 import { show, hide } from 'lib/dom';
 import { keys, flatten, hashMap } from 'lib/functional';
 import { addId } from 'services/searchtracks';
@@ -11,12 +12,15 @@ export default function player(track, next) {
   audio.addEventListener("ended", next, false)
 
   var el = document.createElement("div");
+  el.className = "player whitebox horizontal-flex"
 
   el.appendChild(audio);
+  el.appendChild(explanation("player"));
   hide(audio);
 
   // render elements - label, album image
   var label = document.createElement("div");
+  label.className = "label";
   var cover = document.createElement("img");
 
   if(hasTrack) {
@@ -33,8 +37,8 @@ export default function player(track, next) {
     cover.src = emptyTrack;
   }
 
-  el.appendChild(label);
   el.appendChild(cover);
+  el.appendChild(label);
 
   var buttons = {
     "Pause" : function() {
@@ -63,11 +67,13 @@ export default function player(track, next) {
     }
   };
 
+  let colors = ["purple", "pink", "red"]
   // render buttons
-  var rendered = hashMap.apply(null,
+  let rendered = hashMap.apply(null,
     flatten.apply(null,
-      keys(buttons).map(function(label) {
-        var btn = button(label, buttons[label]);
+      keys(buttons).map(function(label, index) {
+        let btn = button(label, buttons[label]);
+        btn.querySelector("button").className = colors[index];
         el.appendChild(btn);
         return [label, btn]
       })

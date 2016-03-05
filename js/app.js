@@ -44,7 +44,3 @@ function nextTrack() {
 sidebarEl.appendChild(sidebar(playlists, showlist, removelist, nextTrack));
 showlist("search");
 nextTrack();
-
-// behövs egentligen bara
-// TrackList
-// - "Play List" - tar bort hela queuen och ersätter med list
