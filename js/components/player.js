@@ -4,7 +4,7 @@ import { show, hide } from 'lib/dom';
 import { keys, flatten, hashMap } from 'lib/functional';
 import { addId } from 'services/searchtracks';
 
-var emptyTrack =  "/img/empty.png";
+var emptyTrack =  "img/empty.png";
 export default function player(track, next) {
   var hasTrack = !!track;
 

@@ -1,7 +1,9 @@
 # Player2
 
-Just a little reflection on how to write the soundcloud player (used to be their job interview task) in a different style, w/o frameworks.
-I tried doing it a little clojurescript-y, where handlers that are working on the data model are passed down from the app root. Think of the 'playlists' hash as the Om-atom that they pass around. Instead of adding the layer of indirection by swapping on the atom, we just do the data manipulation and call some handlers. That pattern works in such a small app.
+See it running here! [http://karlwestin.github.io/player2/](http://karlwestin.github.io/player2/)
+
+Just a little reflection on how to write the simple audio player, search interface and playlist creator in a different style, w/o frameworks.
+I tried to do it a little clojurescript-y, where handlers that are working on the data model are passed down from the app root. Think of the 'playlists' hash as the Om-atom that they pass around. Instead of adding the layer of indirection by swapping on the atom, we just do the data manipulation and call some handlers. That pattern works in such a small app.
 
 ### Building
 
