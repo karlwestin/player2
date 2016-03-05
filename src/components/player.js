@@ -16,7 +16,7 @@ define(["exports", "module", "components/button", "components/explanation", "lib
   var hashMap = _libFunctional.hashMap;
   var addId = _servicesSearchtracks.addId;
 
-  var emptyTrack = "/img/empty.png";
+  var emptyTrack = "img/empty.png";
 
   function player(track, next) {
     var hasTrack = !!track;
